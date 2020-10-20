@@ -7,9 +7,14 @@ import time
 def init_browser():
     # @NOTE: Replace the path with your actual path to the chromedriver
     executable_path = {'executable_path': 'chromedriver.exe'}
-    browser = Browser('chrome', **executable_path, headless=False)
+    return Browser('chrome', **executable_path, headless=False)
+
+mars_data = {}
 
 def scrape():
+    browser = init_browser()
+
+
     news_url = 'https://mars.nasa.gov/news/'
 
     browser.visit(news_url)
@@ -64,7 +69,7 @@ def scrape():
     hemispheres_main_url = 'https://astrogeology.usgs.gov'
 
 
-# Loop through the items previously stored
+    # Loop through the items previously stored
     for item in items: 
     # Store title
         title = item.find('h3').text
@@ -86,4 +91,8 @@ def scrape():
     
     # Append the retreived information into a list of dictionaries 
         hemisphere_image_urls.append({"title" : title, "img_url" : img_url})
+
+    browser.quit()
+
+    return mars_data
 
