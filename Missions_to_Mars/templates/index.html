@@ -1,30 +1,77 @@
-<!doctype html>
+  
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title> Mission to Mars </title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
 </head>
 
 <body>
-    <div class="container-fluid">
-      <div class="jumbotron text-center">
-        <h1>Visit the...</h1>
-        <p>Beach. Rainforest. Volcano. Tree House. Sloths.</p>
-        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a></p>
+  <div class="container">
+
+    <div class="jumbotron text-center border-bottom">
+      <h1 class="font-weight-bold">Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="../scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2><u>Latest Mars News</u></h2>
       </div>
-      <img src="{{ vacation.sloth_img }}" alt="Sloth">
-      <h2>The typical weather in Costa Rica is:</h2>
-      <h3>Max Temp: {{ vacation.max_temp }}</h3>
-      <h3>Min Temp: {{ vacation.min_temp }}</h3>
     </div>
+  </br>
+    <div class="row">
+      <div class="col-md-12">
+        <h4>{{mars.news_title}}</h4>
+        <p>{{mars.news_p}}</p>
+      </div>
     </div>
-  </body>
+  <hr>
+    <div class="row">
+      <div class="col-md-8 border">
+        <h2 class=""><u>Featured Mars Image</u></h2> 
+        </br>
+        <img src="{{mars.featured_image_url}}" alt="Features Mars Image">
+      </div>
+      </br>
+        <div class="border">
+          <h5>Mars Facts</h5>
+            {{ mars_data.html_table }}
+        </div>
+    </div>
+  <hr>
+    <div class="row">
+      <div class="col-md-8 offset-4">
+        <h2 class="align-items-center"><u>Mars hemispheres</u></h2>  
+      </div>
+    </div>
+    </br>
+    <div class="row">       
+            {% for hemisphere in mars.hemisphere_images %} 
+              <div class="col-6 border">
+              </br>
+                    <div>
+                      <img width="512 px" height="512 px" src="{{ hemisphere.img_url | safe }}">
+                    </div>
+
+                    <div>
+                      <h4> {{ hemisphere.title | safe }} </h4>  
+                    </div>
+            
+              </div>
+            {% endfor %}
+    </div> 
+
+  <hr>
   
-  </html>
-  
+</body>
+
+</html>

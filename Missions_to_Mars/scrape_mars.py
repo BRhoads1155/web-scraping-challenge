@@ -9,11 +9,10 @@ def init_browser():
     executable_path = {'executable_path': 'chromedriver.exe'}
     return Browser('chrome', **executable_path, headless=False)
 
-mars_data = {}
 
 def scrape():
-    browser = init_browser()
 
+    browser = init_browser()
 
     news_url = 'https://mars.nasa.gov/news/'
 
@@ -91,6 +90,16 @@ def scrape():
     
     # Append the retreived information into a list of dictionaries 
         hemisphere_image_urls.append({"title" : title, "img_url" : img_url})
+
+
+    # Store data in a dictionary
+    mars_data = {
+        "news_title": news_title,
+        "news_p": news_p,
+        "featured_image_url": featured_image_url,
+        "mars_facts": html_table,
+        "hemisphere_image_urls": hemisphere_image_urls
+    }
 
     browser.quit()
 
